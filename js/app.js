@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let missed = 0; // If the player guesses wrong 5 times game over.
 
     const phrases = [
-        "Dog's dinner",
+        "Dogs dinner",
         "Fish out of water",
         "Chip off the old block",
-        "Bob's your uncle",
+        "Bob is your uncle",
         "Fruits of your loins"
     ];
 
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function checks if a letter is in the phrase
 
-    function checkLetter(btn) {
+    const checkLetter= btn => {
         let phraseItem = ul.children;
         let correct = null;
 
@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (btn.textContent === character){
                 phraseItem[i].classList.add('show');
+                correct = true;
             }
         }
         return correct;
@@ -103,6 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
             overlay.querySelector('a').textContent = 'Play Again?';
             resetGame();
         }
+    }
+
+    function resetGame() {
+        missed = 0;
+        getRandomPhrasesArray(phrases);
+        addPhraseToDisplay(phraseArray);
     }
 
     // Event handler to listen for the click of the start button.
