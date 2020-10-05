@@ -107,9 +107,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function resetGame() {
+        let keyboard = document.querySelectorAll('.keyrow button');
+
+        for (let i = 0; i < keyboard.length; i++) {
+            keyboard[i].className = '';
+            keyboard[i].disabled = false;
+        }
+
+        ul.innerHTML = '';
+        addPhraseToDisplay(getRandomPhrasesArray(phrases));
+
+        const heart = document.getElementsByTagName('img');
+        for (let i = 0; i < heart.length; i++) {
+            let tries = document.querySelectorAll('.tries');
+            tries[i].style.display = 'inline';
+        }
+
         missed = 0;
-        getRandomPhrasesArray(phrases);
-        addPhraseToDisplay(phraseArray);
     }
 
     // Event handler to listen for the click of the start button.
